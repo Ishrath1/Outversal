@@ -159,7 +159,7 @@ export function Pricing() {
               Chez Outversal, vous démarrez à{" "}
               <span className="text-[#5AACB8]">1 424 €/mois</span>.
               <span className="text-sm text-muted-foreground ml-2">
-                (tarif de base pouvant en fonction des profils)
+                (tarif de base pouvant changer en fonction des profils)
               </span>
             </p>
             <p className="text-base text-muted-foreground leading-relaxed">
