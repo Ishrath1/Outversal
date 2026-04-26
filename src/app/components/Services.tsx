@@ -53,7 +53,7 @@ export function Services() {
           container.scrollBy({ left: scrollAmount, behavior: "auto" });
         }
       }
-    }, 35); //ajuster la vitesse de défilement ici (plus petit = plus rapide)
+    }, 45); //ajuster la vitesse de défilement ici (plus petit = plus rapide)
 
     return () => clearInterval(interval);
   }, [isScrolling]);

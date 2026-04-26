@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
+import logoImg from "../../imports/logo_HEC.svg";
 
 export function About() {
   const ref = useRef(null);
@@ -49,6 +50,7 @@ export function About() {
               Outversal, c'est le pont stratégique entre deux mondes :
               l'exigence française et l'excellence malgache.
             </p>
+            <img src={logoImg} alt="logo HEC Paris" className="mx-auto h-15" />
           </motion.div>
         </div>
       </div>
