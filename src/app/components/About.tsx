@@ -28,9 +28,9 @@ export function About() {
             className="space-y-6 text-base text-muted-foreground leading-relaxed"
           >
             <p>
-              Outversal a été fondé par un diplômé d'HEC Paris, l'une des
-              meilleures grandes écoles de commerce au monde, avec une
-              conviction forte :{" "}
+              Outversal a été fondé par un entrepreneur malgache, diplômé d'HEC
+              Paris, l'une des meilleures grandes écoles de commerce au monde,
+              avec une conviction forte :{" "}
               <span className="text-foreground">
                 le talent n'a pas de frontières
               </span>

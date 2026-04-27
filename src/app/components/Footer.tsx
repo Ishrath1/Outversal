@@ -76,8 +76,8 @@ export function Footer() {
           <div>
             <h4 className="mb-4">Contact</h4>
             <ul className="space-y-2 text-sm opacity-80">
-              <li>contact@outversal.fr</li>
-              <li>+33 1 23 45 67 89</li>
+              <li>contact@outversal.com</li>
+              <li>+33 7 61 74 21 51</li>
             </ul>
           </div>
         </div>

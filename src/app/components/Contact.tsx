@@ -1,15 +1,15 @@
-import { Mail, Phone, Send } from 'lucide-react';
-import { useState, useRef } from 'react';
-import { motion } from 'motion/react';
-import { useInView } from 'motion/react';
+import { Mail, Phone, Send } from "lucide-react";
+import { useState, useRef } from "react";
+import { motion } from "motion/react";
+import { useInView } from "motion/react";
 
 export function Contact() {
   const [formData, setFormData] = useState({
-    nom: '',
-    email: '',
-    telephone: '',
-    entreprise: '',
-    message: ''
+    nom: "",
+    email: "",
+    telephone: "",
+    entreprise: "",
+    message: "",
   });
 
   const ref = useRef(null);
@@ -17,14 +17,18 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Merci pour votre message ! Nous vous recontacterons dans les plus brefs délais.');
+    console.log("Form submitted:", formData);
+    alert(
+      "Merci pour votre message ! Nous vous recontacterons dans les plus brefs délais.",
+    );
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -38,7 +42,9 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl mb-4 text-foreground">Contactez-nous</h2>
+          <h2 className="text-3xl sm:text-4xl mb-4 text-foreground">
+            Contactez-nous
+          </h2>
           <p className="text-lg text-muted-foreground">
             Discutons de vos besoins en externalisation
           </p>
@@ -46,10 +52,15 @@ export function Contact() {
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-white p-8 rounded-xl border border-border">
-            <h3 className="text-xl mb-6 text-foreground">Envoyez-nous un message</h3>
+            <h3 className="text-xl mb-6 text-foreground">
+              Envoyez-nous un message
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="nom" className="block text-sm mb-2 text-foreground">
+                <label
+                  htmlFor="nom"
+                  className="block text-sm mb-2 text-foreground"
+                >
                   Nom complet *
                 </label>
                 <input
@@ -64,7 +75,10 @@ export function Contact() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm mb-2 text-foreground">
+                <label
+                  htmlFor="email"
+                  className="block text-sm mb-2 text-foreground"
+                >
                   Email *
                 </label>
                 <input
@@ -79,7 +93,10 @@ export function Contact() {
               </div>
 
               <div>
-                <label htmlFor="telephone" className="block text-sm mb-2 text-foreground">
+                <label
+                  htmlFor="telephone"
+                  className="block text-sm mb-2 text-foreground"
+                >
                   Téléphone
                 </label>
                 <input
@@ -93,7 +110,10 @@ export function Contact() {
               </div>
 
               <div>
-                <label htmlFor="entreprise" className="block text-sm mb-2 text-foreground">
+                <label
+                  htmlFor="entreprise"
+                  className="block text-sm mb-2 text-foreground"
+                >
                   Entreprise
                 </label>
                 <input
@@ -107,7 +127,10 @@ export function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm mb-2 text-foreground">
+                <label
+                  htmlFor="message"
+                  className="block text-sm mb-2 text-foreground"
+                >
                   Message *
                 </label>
                 <textarea
@@ -142,8 +165,11 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Email</p>
-                    <a href="mailto:contact@outversal.fr" className="text-foreground hover:text-[#5AACB8] transition-colors">
-                      contact@outversal.fr
+                    <a
+                      href="mailto:contact@outversal.com"
+                      className="text-foreground hover:text-[#5AACB8] transition-colors"
+                    >
+                      contact@outversal.com
                     </a>
                   </div>
                 </div>
@@ -153,9 +179,14 @@ export function Contact() {
                     <Phone className="text-[#234660]" size={20} />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground mb-1">Téléphone</p>
-                    <a href="tel:+33123456789" className="text-foreground hover:text-[#5AACB8] transition-colors">
-                      +33 1 23 45 67 89
+                    <p className="text-sm text-muted-foreground mb-1">
+                      Téléphone
+                    </p>
+                    <a
+                      href="tel:+33761742151"
+                      className="text-foreground hover:text-[#5AACB8] transition-colors"
+                    >
+                      +33 7 61 74 21 51
                     </a>
                   </div>
                 </div>
@@ -171,7 +202,6 @@ export function Contact() {
               <ul className="text-sm space-y-2 opacity-90">
                 <li>✓ Sans engagement</li>
                 <li>✓ Résiliable à tout moment</li>
-                <li>✓ Remplacement garanti sous 48h</li>
               </ul>
             </div>
           </div>

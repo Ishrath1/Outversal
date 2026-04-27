@@ -3,7 +3,7 @@ import logo2 from "../../imports/logo_principal.png";
 
 export function Hero() {
   return (
-    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <section className="pt-20 lg:pt-32 pb-16 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="container mx-auto max-w-7xl">
         <div className="relative max-w-4xl mx-auto text-center">
           {/* Background image transparente*/}
@@ -99,7 +99,7 @@ export function Hero() {
                 href="#contact"
                 className="bg-[#234660] text-white px-8 py-3 rounded-lg hover:bg-[#1A3549] transition-colors inline-block"
               >
-                Trouver mon profil
+                Trouver mon talent
               </a>
               <a
                 href="#comment"

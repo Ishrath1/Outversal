@@ -177,7 +177,7 @@ export function Pricing() {
             className="bg-[#E8F5E9] p-8 rounded-xl border border-[#4CAF50]/30"
           >
             <h3 className="text-xl mb-3 text-foreground">
-              Pas convaincu ? Testez gratuitement pendant 5 jours.
+              Envie de réduire vos coûts ? Testez gratuitement pendant 5 jours.
             </h3>
             <p className="text-base text-muted-foreground mb-6">
               Aucun engagement. Vous validez le profil, vous constatez les
