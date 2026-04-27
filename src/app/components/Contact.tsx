@@ -15,8 +15,9 @@ export function Contact() {
     setResult("Envoi en cours...");
     setIsLoading(true);
 
-    const formData = new FormData(event.currentTarget);
-    formData.append("access_key", "05f46ab9-91b4-4135-b72a-7d7082596ab4");
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_KEY);
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -26,15 +27,19 @@ export function Contact() {
 
       const data = await response.json();
 
-      if (data.success) {
+      if (response.ok && data.success) {
         setResult("Le formulaire a été envoyé avec succès !");
-        event.currentTarget.reset();
+        form.reset();
+      } else if (!response.ok) {
+        setResult("Erreur serveur. Veuillez réessayer.");
+        console.error("Server error:", data);
       } else {
         setResult(data.message || "Une erreur est survenue");
+        console.error("Form error:", data);
       }
     } catch (error) {
       setResult("Erreur lors de l'envoi du message");
-      console.error("Error:", error);
+      console.error("Network error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -100,12 +105,13 @@ export function Contact() {
                   htmlFor="telephone"
                   className="block text-sm mb-2 text-foreground"
                 >
-                  Téléphone
+                  Téléphone *
                 </label>
                 <input
                   type="tel"
                   id="telephone"
                   name="telephone"
+                  required
                   className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5AACB8]"
                 />
               </div>
@@ -115,12 +121,13 @@ export function Contact() {
                   htmlFor="entreprise"
                   className="block text-sm mb-2 text-foreground"
                 >
-                  Entreprise
+                  Entreprise *
                 </label>
                 <input
                   type="text"
                   id="entreprise"
                   name="entreprise"
+                  required
                   className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5AACB8]"
                 />
               </div>
