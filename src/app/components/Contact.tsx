@@ -4,34 +4,41 @@ import { motion } from "motion/react";
 import { useInView } from "motion/react";
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    nom: "",
-    email: "",
-    telephone: "",
-    entreprise: "",
-    message: "",
-  });
-
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert(
-      "Merci pour votre message ! Nous vous recontacterons dans les plus brefs délais.",
-    );
-  };
+  const [result, setResult] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setResult("Envoi en cours...");
+    setIsLoading(true);
 
+    const formData = new FormData(event.currentTarget);
+    formData.append("access_key", "05f46ab9-91b4-4135-b72a-7d7082596ab4");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setResult("Le formulaire a été envoyé avec succès !");
+        event.currentTarget.reset();
+      } else {
+        setResult(data.message || "Une erreur est survenue");
+      }
+    } catch (error) {
+      setResult("Erreur lors de l'envoi du message");
+      console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary">
       <div className="container mx-auto max-w-7xl">
@@ -55,7 +62,7 @@ export function Contact() {
             <h3 className="text-xl mb-6 text-foreground">
               Envoyez-nous un message
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={onSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="nom"
@@ -68,8 +75,6 @@ export function Contact() {
                   id="nom"
                   name="nom"
                   required
-                  value={formData.nom}
-                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5AACB8]"
                 />
               </div>
@@ -86,8 +91,6 @@ export function Contact() {
                   id="email"
                   name="email"
                   required
-                  value={formData.email}
-                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5AACB8]"
                 />
               </div>
@@ -103,8 +106,6 @@ export function Contact() {
                   type="tel"
                   id="telephone"
                   name="telephone"
-                  value={formData.telephone}
-                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5AACB8]"
                 />
               </div>
@@ -120,8 +121,6 @@ export function Contact() {
                   type="text"
                   id="entreprise"
                   name="entreprise"
-                  value={formData.entreprise}
-                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5AACB8]"
                 />
               </div>
@@ -138,19 +137,30 @@ export function Contact() {
                   name="message"
                   required
                   rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
                   className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5AACB8] resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-[#234660] text-white px-6 py-3 rounded-lg hover:bg-[#1A3549] transition-colors flex items-center justify-center gap-2"
+                disabled={isLoading}
+                className="w-full bg-[#234660] text-white px-6 py-3 rounded-lg hover:bg-[#1A3549] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send size={18} />
-                Envoyer le message
+                {isLoading ? "Envoi en cours..." : "Envoyer le message"}
               </button>
+
+              {result && (
+                <div
+                  className={`p-3 rounded-lg text-sm ${
+                    result.includes("succès")
+                      ? "bg-green-100 text-green-800 border border-green-300"
+                      : "bg-red-100 text-red-800 border border-red-300"
+                  }`}
+                >
+                  {result}
+                </div>
+              )}
             </form>
           </div>
 
