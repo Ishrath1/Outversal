@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import logo2 from "../../imports/logo_principal.png";
+import RotatingText from "./RotatingText";
 
 export function Hero() {
   return (
@@ -40,8 +41,22 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-2xl sm:text-3xl lg:text-4xl mb-6 text-foreground"
             >
-              Externalisez votre recrutement sans charges, sans CDI, sans
-              risque.
+              Externalisez votre recrutement sans{" "}
+              <RotatingText
+                texts={["charges.", "CDI.", "risque."]}
+                mainClassName="inline-flex items-center px-2 sm:px-2 md:px-3 bg-[#78C2CF] text-white py-0.5 sm:py-1 md:py-2 rounded-lg"
+                staggerFrom="last"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-120%" }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={2000}
+                splitBy="characters"
+                auto
+                loop
+              />{" "}
             </motion.h2>
 
             <motion.p
